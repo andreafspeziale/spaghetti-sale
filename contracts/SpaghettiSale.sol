@@ -10,20 +10,16 @@ contract SpaghettiSale is ICOEngineInterface, KYCBase{
 
     SpaghettiCoin public token;
     address public wallet;
-
     uint public price;
-
     uint public startTime;
-
     uint public endTime;
-
     uint public totalTokens;
-
     uint public remainingTokens;
 
     event Event(address value);
 
     constructor(
+        address[] kycSigner,
         address _token, 
         address _wallet, 
         uint _startTime, 
@@ -31,6 +27,7 @@ contract SpaghettiSale is ICOEngineInterface, KYCBase{
         uint _price, 
         uint _totalTokens)
         public
+        KYCBase(kycSigner)
     {
         token = SpaghettiCoin(_token);
         wallet = _wallet;
