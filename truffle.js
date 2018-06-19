@@ -12,6 +12,13 @@ module.exports = {
       network_id: "*", // Match any network id
       gas: 6721975,
       gasPrice: 65000000000,
+    },
+    eidoo: {
+      host: "wally-api-dev.undo.it",
+      port: 8545,
+      gas: 6721975,
+      gasPrice: 65000000000,
+      network_id: "*" // Match any network id
     }
   }
 }
