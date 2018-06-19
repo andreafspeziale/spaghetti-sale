@@ -1,9 +1,11 @@
 pragma solidity ^0.4.24;
 
 import "./SpaghettiCoin.sol";
+import "./ICOEngineInterface.sol";
+import "./KYCBase.sol";
 import "../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract SpaghettiSale {
+contract SpaghettiSale is ICOEngineInterface, KYCBase{
     using SafeMath for uint;
 
     SpaghettiCoin public token;
@@ -74,9 +76,5 @@ contract SpaghettiSale {
 
     function price() public view returns(uint) {
         return price;
-    }
-
-    function() public payable {
-        releaseTokensTo(msg.sender);
     }
 }
