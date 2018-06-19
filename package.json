@@ -15,7 +15,7 @@
     "erc20",
     "crowdsale"
   ],
-  "author": "",
+  "author": "andreafspeziale",
   "license": "ISC",
   "dependencies": {
     "bn.js": "^4.11.8",
