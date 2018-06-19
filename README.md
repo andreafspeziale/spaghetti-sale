@@ -1,4 +1,4 @@
-# Sample token sale
+# Sample token sale using Eidoo KYC
 
 ## Requirements
 - node v9.10.1
@@ -12,3 +12,6 @@
 
 ## Migrate
 - `$ truffle migrate --network NETWORK_NAME`
+
+## Test
+- `$ truffle test`
