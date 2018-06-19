@@ -1,0 +1,27 @@
+{
+  "name": "base-ico",
+  "version": "0.0.1",
+  "description": "sample token sale",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "erc20",
+    "crowdsale"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openzeppelin-solidity": "1.10.0"
+  },
+  "devDependencies": {
+    "ganache-cli": "^6.1.0",
+    "truffle": "^4.1.11"
+  }
+}
