@@ -13,5 +13,5 @@
 ## Migrate
 - `$ truffle migrate --network NETWORK_NAME`
 
-## Test
+## Test
 - `$ truffle test`
