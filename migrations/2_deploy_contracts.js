@@ -28,6 +28,6 @@ module.exports = (deployer, network, accounts) => {
         })
         .then((instance) => {
             SpaghettiSaleInst = instance
-            return SpaghettiCoinInst.approve(wallet, totalTokens);
+            return SpaghettiCoinInst.approve(SpaghettiSaleInst.address, totalTokens, {from: wallet});
         })
 }
