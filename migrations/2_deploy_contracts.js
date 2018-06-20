@@ -23,7 +23,7 @@ module.exports = (deployer, network, accounts) => {
                 return deployer.deploy(
                     SpaghettiSale,
                     stagingKycSigners,
-                    SpaghettiCoin.address,
+                    SpaghettiCoinInst.address,
                     wallet,
                     openingTime,
                     closingTime,
@@ -34,7 +34,7 @@ module.exports = (deployer, network, accounts) => {
             })
             .then((instance) => {
                 SpaghettiSaleInst = instance
-                return SpaghettiCoinInst.approve(SpaghettiCoinInst.address, totalTokens, {from: wallet});
+                return SpaghettiCoinInst.approve(SpaghettiSaleInst.address, totalTokens, {from: wallet});
             })
     }
 }
