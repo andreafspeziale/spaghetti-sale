@@ -17,7 +17,7 @@ module.exports = (deployer, network, accounts) => {
             SpaghettiCoinInst = instance
             return deployer.deploy(
                 SpaghettiSale,
-                SpaghettiCoin.address,
+                SpaghettiCoinInst.address,
                 wallet,
                 openingTime,
                 closingTime,
