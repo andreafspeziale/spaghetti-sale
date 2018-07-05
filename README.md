@@ -14,4 +14,17 @@
 - `$ truffle migrate --network NETWORK_NAME`
 
 ## Test
-- `$ truffle test`
+- `$ truffle test --network NETWORK_NAME`
+
+# Local development
+Run Ganache:
+
+- `$ ganache-cli --port 7545`
+
+and run tests with:
+
+- `$ truffle test --network development`
+
+or:
+
+- `$ npm run test:development`

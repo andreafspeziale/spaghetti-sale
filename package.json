@@ -7,7 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test"
+    "test:development": "truffle test --network development",
+    "test:docker": "truffle test --network docker",
+    "test:parity": "truffle test --network parity",
+    "test:ropsten": "truffle test --network ropsten"
   },
   "keywords": [
     "ethereum",
