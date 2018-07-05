@@ -3,11 +3,11 @@ const SpaghettiSale = artifacts.require('./SpaghettiSale.sol')
 
 module.exports = (deployer, network, accounts) => {
     
-    const wallet      = accounts[1]
-    const openingTime = web3.eth.getBlock('latest').timestamp + 10  // Starts after 10 seconds in the future
+    const wallet      = accounts[0]
+    const openingTime = web3.eth.getBlock('latest').timestamp       // Starts immediately
     const closingTime = openingTime + 86400 * 20                    // Ends after 20 days
-    const rate        = new web3.BigNumber(1000)
-    const totalTokens  = 10 * 10^21                                  // 10K Ether in Wei
+    const rate        = 5                                           // Multiplier 1 ether gives you back 5 token
+    const totalTokens = 1000000*10**18                              // 1 mln of tokens
 
     return deployer
         .then(() => {
@@ -15,6 +15,7 @@ module.exports = (deployer, network, accounts) => {
         })
         .then((instance) => {
             SpaghettiCoinInst = instance
+            console.log(`\nDEPLOYED SPAGHETTI COIN ADDRESS: ${SpaghettiCoinInst.address}`)
             return deployer.deploy(
                 SpaghettiSale,
                 SpaghettiCoinInst.address,
@@ -28,6 +29,9 @@ module.exports = (deployer, network, accounts) => {
         })
         .then((instance) => {
             SpaghettiSaleInst = instance
+            console.log(`DEPLOYED SPAGHETTI SALE ADDRESS: ${SpaghettiSaleInst.address}`)
             return SpaghettiCoinInst.approve(SpaghettiSaleInst.address, totalTokens, {from: wallet});
+        }).then((tx) => {
+            console.log(`APPROVAL DONE, TX: ${JSON.stringify(tx.receipt.transactionHash)}`)
         })
 }
