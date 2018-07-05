@@ -19,8 +19,6 @@ contract SpaghettiSale {
 
     uint public remainingTokens;
 
-    event Event(address value);
-
     constructor(
         address _token, 
         address _wallet, 
