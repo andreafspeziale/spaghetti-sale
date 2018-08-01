@@ -1,5 +1,5 @@
 {
-  "name": "base-ico",
+  "name": "spaghetti-sale",
   "version": "0.0.1",
   "description": "sample token sale",
   "main": "truffle.js",
@@ -7,10 +7,11 @@
     "test": "test"
   },
   "scripts": {
+    "ganache": "ganache-cli -p 7545 -i 8994",
+    "migrate:development": "truffle migrate --network development --reset",
+    "migrate:parity": "truffle migrate --network parity --reset",
     "test:development": "truffle test --network development",
-    "test:docker": "truffle test --network docker",
-    "test:parity": "truffle test --network parity",
-    "test:ropsten": "truffle test --network ropsten"
+    "test:parity": "truffle test --network parity"
   },
   "keywords": [
     "ethereum",
@@ -21,6 +22,7 @@
   "author": "andreafspeziale",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.3.1",
     "openzeppelin-solidity": "1.10.0"
   },
   "devDependencies": {

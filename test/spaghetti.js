@@ -1,5 +1,6 @@
 const SpaghettiCoin = artifacts.require('./SpaghettiCoin.sol')
 const SpaghettiSale = artifacts.require('./SpaghettiSale.sol')
+const colors = require('colors')
 
 contract('SpaghettiCoin', function(accounts) {
 
@@ -15,7 +16,7 @@ contract('SpaghettiCoin', function(accounts) {
     const openingTime = web3.eth.getBlock('latest').timestamp       // Starts immediately
     const closingTime = openingTime + 86400 * 20                    // Ends after 20 days
 
-    console.log(`\nWALLET: ${wallet}\nPURCHASER: ${purchaser}`)
+    console.log(colors.magenta(`\[wallet]: ${wallet}\n[purchaser]: ${purchaser}`))
 
     const expectEvent = (res, eventName) => {
         const ev = _.find(res.logs, {event: eventName})
@@ -25,33 +26,33 @@ contract('SpaghettiCoin', function(accounts) {
 
     beforeEach(async() => {
         // Deploy of the Token Contract
-        // coin = await SpaghettiCoin.new(totalTokens, {from: wallet})
+        coin = await SpaghettiCoin.new(totalTokens, {from: wallet})
 
         // Deployed Token Contract
-        coin = await SpaghettiCoin.deployed()
+        // coin = await SpaghettiCoin.deployed()
         // console.log(`COIN ADDRESS FROM TEST FILE: ${coin.address}`)
         
         // Deploy of the Sale Contract
-        // sale = await SpaghettiSale.new(
-        //     coin.address,
-        //     wallet,
-        //     openingTime,
-        //     closingTime,
-        //     rate,
-        //     totalTokens,
-        //     {from: wallet}
-        // )
+        sale = await SpaghettiSale.new(
+            coin.address,
+            wallet,
+            openingTime,
+            closingTime,
+            rate,
+            totalTokens,
+            {from: wallet}
+        )
 
         // Deployed of the Sale Contract
-        sale = await SpaghettiSale.deployed()
+        // sale = await SpaghettiSale.deployed()
         // console.log(`SALE ADDRESS FROM TEST FILE: ${sale.address}`)
 
         // Allowing the Sale contract to spend the Wallet tokens
-        // approveWallet = await coin.approve(
-        //     sale.address, 
-        //     totalTokens,
-        //     {from: wallet}
-        // )
+        approveWallet = await coin.approve(
+            sale.address, 
+            totalTokens,
+            {from: wallet}
+        )
 
     })
 
@@ -87,16 +88,16 @@ contract('SpaghettiCoin', function(accounts) {
             const remainingTokens = await sale.remainingTokens()
             expect(remainingTokens.toNumber()).to.deep.equal(totalTokens);
         })
-        // it('should emit an Approval event', async () => {
-        //     const ev = expectEvent(approveWallet, 'Approval')
-        //     expect(ev.args.owner).to.equal(wallet)
-        //     expect(ev.args.spender).to.equal(sale.address)
-        //     expect(ev.args.value.toString(10)).to.equal(totalTokens.toString(10))
-        // })
+        it('should emit an Approval event', async () => {
+            const ev = expectEvent(approveWallet, 'Approval')
+            expect(ev.args.owner).to.equal(wallet)
+            expect(ev.args.spender).to.equal(sale.address)
+            expect(ev.args.value.toNumber()).to.equal(totalTokens)
+        })
         it('should see sale contract allowed to move all tokens', async () => {
             const allowance = await coin.allowance(wallet, sale.address)
             
-            console.log(`Sale address (${sale.address})\nis allowed to spend ${allowance.toNumber()} for wallet (${wallet})`)
+            console.log(`Sale address (${sale.address})\nis allowed to spend ${web3.fromWei(allowance)} ETH for wallet (${wallet})`)
             
             expect(allowance.toNumber()).to.deep.equal(totalTokens);
         })

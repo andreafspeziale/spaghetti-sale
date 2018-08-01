@@ -1,5 +1,6 @@
 const SpaghettiCoin = artifacts.require('./SpaghettiCoin.sol')
 const SpaghettiSale = artifacts.require('./SpaghettiSale.sol')
+const colors = require('colors')
 
 module.exports = (deployer, network, accounts) => {
     
@@ -15,7 +16,7 @@ module.exports = (deployer, network, accounts) => {
         })
         .then((instance) => {
             SpaghettiCoinInst = instance
-            console.log(`\nDEPLOYED SPAGHETTI COIN ADDRESS: ${SpaghettiCoinInst.address}`)
+            console.log(colors.green(`\n[spaghetti coin address]: ${SpaghettiCoinInst.address}`))
             return deployer.deploy(
                 SpaghettiSale,
                 SpaghettiCoinInst.address,
@@ -29,9 +30,9 @@ module.exports = (deployer, network, accounts) => {
         })
         .then((instance) => {
             SpaghettiSaleInst = instance
-            console.log(`DEPLOYED SPAGHETTI SALE ADDRESS: ${SpaghettiSaleInst.address}`)
+            console.log(colors.green(`[spaghetti sale address]: ${SpaghettiSaleInst.address}`))
             return SpaghettiCoinInst.approve(SpaghettiSaleInst.address, totalTokens, {from: wallet});
         }).then((tx) => {
-            console.log(`APPROVAL DONE, TX: ${JSON.stringify(tx.receipt.transactionHash)}`)
+            console.log(colors.green(`[approval transaction status]: ${tx.receipt.status == '0x1' ? 'success' : 'fail'}`))
         })
 }
