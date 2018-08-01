@@ -3,6 +3,7 @@ const SpaghettiSale = artifacts.require('./SpaghettiSale.sol')
 const BN = require('bn.js')
 const abi = require('ethereumjs-abi')
 const { ecsign } = require('ethereumjs-util')
+const colors = require('colors')
 
 contract('SpaghettiCoin', function(accounts) {
 
@@ -47,7 +48,7 @@ contract('SpaghettiCoin', function(accounts) {
         }
     }
 
-      console.log(`\nWallet: ${wallet}\nPurchaser: ${purchaser}\nPurchaser2: ${purchaser2}`)
+    console.log(colors.magenta(`\[wallet]: ${wallet}\n[purchaser]: ${purchaser}\n[purchaser2]: ${purchaser2}`))
 
     beforeEach(async() => {
         // Deploy of the Token Contract
