@@ -7,7 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test"
+    "ganache": "ganache-cli -p 7545 -i 8994",
+    "migrate:development": "truffle migrate --network development --reset",
+    "migrate:parity": "truffle migrate --network parity --reset",
+    "test:development": "truffle test --network development",
+    "test:parity": "truffle test --network parity"
   },
   "keywords": [
     "ethereum",
