@@ -1,0 +1,5 @@
+module.exports = {
+    'infura_apikey': '',
+    'hd_wallet_mnemonic': '',
+    'indexId': 0
+}
