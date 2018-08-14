@@ -18,5 +18,5 @@ Since Etherscan is suggesting the [solidity-flattener](https://github.com/BlockC
 - `$ pip3.X freeze`
 
 ## Flat
-- `$ solidity_flattener --solc-path="--allow-paths $PWD/node_modules/zeppelin-solidity/ zeppelin-solidity=$PWD/node_modules/zeppelin-solidity" contracts/ContractToFlat.sol`
+- `$ solidity_flattener --solc-path="solc --allow-paths $PWD/node_modules/zeppelin-solidity/ zeppelin-solidity=$PWD/node_modules/zeppelin-solidity" contracts/SpaghettiCoin.sol --output $PWD/flattened/SpaghettiCoin.sol`
 
