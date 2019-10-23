@@ -27,8 +27,8 @@
     "truffle-hdwallet-provider": "0.0.6"
   },
   "devDependencies": {
-    "eth-gas-reporter": "^0.1.10",
-    "ganache-cli": "^6.1.0",
+    "eth-gas-reporter": "^0.2.2",
+    "ganache-cli": "^6.7.0",
     "truffle": "^4.1.11"
   }
 }
